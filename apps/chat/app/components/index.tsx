@@ -16,6 +16,7 @@ import { Resolution, TransferMethod, WorkflowRunningStatus } from '@/types/app'
 import Chat from '@/app/components/chat'
 import { setLocaleOnClient } from '@/i18n/client'
 import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import { useMessage } from '@/hooks/use-message'
 import Loading from '@/app/components/base/loading'
 import { replaceVarWithValues, userInputsFormToPromptVariables } from '@/utils/prompt'
 import AppUnavailable from '@/app/components/app-unavailable'
@@ -24,6 +25,19 @@ import type { Annotation as AnnotationType } from '@/types/log'
 import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 
 const Main: FC = () => {
+  /**
+   * To message
+   * get sid & url
+   */
+  const messageInstance = useMessage()
+  useEffect(() => {
+    console.log('bot iframe send connection --->')
+    messageInstance.start(window.parent, '*').sendMessage({
+      command: 'ChatBotRequestConnection',
+      source: location.href,
+    })
+  }, [])
+
   const { t } = useTranslation()
   const media = useBreakpoints()
   const isMobile = media === MediaType.mobile

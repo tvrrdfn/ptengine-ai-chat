@@ -7,8 +7,7 @@ import type { Sandbox, SDKArea } from '@/bot.types';
  */
 (function () {
     // 获取环境变量
-    // const host = location.protocol + import.meta.env.VITE_BASEURL;
-    const host = location.protocol + '//devpti.ptmind.cn/';
+    const host = location.protocol + import.meta.env.VITE_BASEURL;
     const { area, sid } = getArea(document.currentScript as HTMLElement);
 
     // 隔离 UI 的 HTML 模板

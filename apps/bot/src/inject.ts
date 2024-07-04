@@ -37,8 +37,8 @@ import type { Sandbox, SDKArea } from '@/bot.types';
       <body>
           <script>window.require = () => {}</script>
           <script type="module" src="${host}ui/ptui.js"></script>
-          <!-- <script type="module" src="${host}ai/chat.js"></script> -->
-          <script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script>
+          <script type="module" src="${host}ai/chat.js"></script>
+          <!-- <script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script> -->
       </body>
   </html>`;
 

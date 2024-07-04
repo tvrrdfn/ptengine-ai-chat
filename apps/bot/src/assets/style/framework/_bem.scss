@@ -1,0 +1,35 @@
+
+/** bem 命名规范 */
+$elementSeparator: "__";
+$modifierSeparator: "--";
+$classprefix:'.is-';
+
+@mixin b($block) {
+    .#{$block} {
+        @content;
+    }
+}
+
+@mixin e($element) {
+    @at-root {
+        #{&}#{$elementSeparator + $element} {
+            @content;
+        }
+    }
+}
+
+@mixin m($modifier) {
+    @at-root {
+        #{&}#{$modifierSeparator + $modifier} {
+            @content;
+        }
+    }
+}
+
+@mixin when($attr) {
+    @at-root{
+        #{&}#{$classprefix + $attr}{
+            @content
+        }
+    }
+}

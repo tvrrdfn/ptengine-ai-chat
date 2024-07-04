@@ -1,0 +1,56 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "jsx": "preserve",
+        "jsxImportSource": "vue",
+        "moduleResolution": "node",
+        "isolatedModules": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "useDefineForClassFields": true,
+        "sourceMap": true,
+        "baseUrl": ".",
+        "types": [
+            "vite/client",
+            "jest"
+        ],
+        "plugins": [
+            {
+                "name": "@vuedx/typescript-plugin-vue"
+            }
+        ],
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+        },
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ]
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "src/**/*.d.ts",
+        "tests/**/*.ts",
+        "tests/**/*.tsx",
+        "types/**/*.d.ts",
+        "src/components/ptengine-ui/libs/**/**/**.ts",
+        "src/components/ptengine-ui/components/**/**/**.vue",
+        "src/components/ptengine-ui/components/**/**/**.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/**/*.spec.ts"
+    ]
+}

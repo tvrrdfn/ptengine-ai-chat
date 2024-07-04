@@ -1,0 +1,214 @@
+$breakpoints: (
+    'iphone': (320px, 480px),
+    'pad': (481px, 768px),
+    'notebook': (769px, 1024px),
+    'desktop': (1025px, 1200px),
+    'tv': 1201px,
+);
+
+@mixin responsive-to($breakpoints) {
+    $bp: map-get($breakpoints);
+    @if(type-of($bp) == 'list') {
+        $min: nth($bp, 1);
+        $max: nth($bp, 2);
+        @media (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @media (min-width: $bp) {
+            @content;
+        }
+    }
+}
+
+
+
+// ================================================
+// Tooltip
+// $placement: 位置; top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end
+// $bgColor: 背景色;
+// $color: 文本颜色;
+// $theme: 风格; normal/border
+// ================================================
+@mixin tooltip($placement, $bgColor, $color, $theme: normal) {
+    $arrow-width: 5px;
+
+    min-width: 28px;
+    position: absolute;
+    text-align: center;
+    line-height: 1.2em;
+    color: $color;
+    cursor: default;
+    padding: 2px 8px 4px;
+    font-size: 13px;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: visible;
+    pointer-events: auto;
+    background-color: $bgColor;
+    display: flex;
+
+    &::before,
+    &::after {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        position: absolute;
+        border-style: solid;
+    }
+
+    &::before {
+        content: '';
+        border-width: $arrow-width;
+        z-index: 2;
+    }
+
+    @if $theme==border {
+        border: 2px solid $color;
+
+        &::after {
+            content: '';
+            border-width: calc($arrow-width + 2px);
+            z-index: 1;
+        }
+    }
+
+    @if $placement==top {
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: $arrow-width;
+
+        &::before,
+        &::after {
+            border-width: 5px 3px 0 3px;
+            border-color: $bgColor transparent transparent transparent;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &::after {
+            border-top-color: $color;
+        }
+    } @else if $placement==top-start {
+        bottom: 100%;
+        left: 100%;
+        margin-bottom: $arrow-width;
+
+        &::before,
+        &::after {
+            border-width: 5px 3px 0 3px;
+            border-color: $bgColor transparent transparent transparent;
+            top: 100%;
+            left: 7px;
+        }
+
+        &::after {
+            border-top-color: $color;
+        }
+    } @else if $placement==top-end {
+        bottom: 100%;
+        right: 100%;
+        margin-bottom: $arrow-width;
+
+        &::before,
+        &::after {
+            border-width: 5px 3px 0 3px;
+            border-color: $bgColor transparent transparent transparent;
+            top: 100%;
+            right: 7px;
+        }
+
+        &::after {
+            border-top-color: $color;
+        }
+    } @else if $placement==right {
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: $arrow-width;
+
+        &::before,
+        &::after {
+            border-width: 3px 5px 3px 0;
+            border-color: transparent $bgColor transparent transparent;
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &::after {
+            border-right-color: $color;
+        }
+    } @else if $placement==left {
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: $arrow-width;
+
+        &::before,
+        &::after {
+            border-width: 3px 0 3px 5px;
+            border-color: transparent transparent transparent $bgColor;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &::after {
+            border-left-color: $color;
+        }
+    }
+}
+
+// ================================================
+// media query
+// 具体参考：https://v4.bootcss.com/docs/4.0/layout/overview/
+// ================================================
+
+// Extra large devices (desktops, less than 1440px)
+@mixin media-xl {
+    @media (max-width: 1399.98px) {
+        @content;
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@mixin media-lg {
+    @media (max-width: 1199.98px) {
+        @content;
+    }
+}
+
+// Medium devices (tablets, less than 1024px)
+@mixin media-md {
+    @media (max-width: 1023.98px) {
+        @content;
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@mixin media-sm {
+    @media (max-width: 767.98px) {
+        @content;
+    }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@mixin media-xs {
+    @media (max-width: 575.98px) {
+        @content;
+    }
+}
+
+/* 多行文本省略号  */
+@mixin line-clamp($clamp) {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $clamp;
+    /*! autoprefixer:off  */
+    -webkit-box-orient: vertical;
+    /*! autoprefixer:on  */
+}

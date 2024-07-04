@@ -1,0 +1,122 @@
+$pt-black: #000;
+$pt-black1: #212121;
+$pt-black2: #333;
+$pt-black3: #222;
+
+$pt-blue1: #0043ce; //hover
+$pt-blue2: #0f62fe; //normal
+$pt-blue3: #0013ff;
+$pt-blue4: #e9f7fe;
+$pt-blue5: #c8eafc;
+
+$pt-grey: #001b6c;
+$pt-grey0: #051432;
+$pt-grey1: #091e42; //Title
+$pt-grey2: #344563; //Text
+$pt-grey3: #5e6c84; //Supplementary/icon
+$pt-grey4: #8993a4; //Invalid Characters
+$pt-grey5: #c1c7d0; //Border-line
+$pt-grey6: #dfe7f5; //Divider
+$pt-grey7: #f7f9fa; //Background Color
+$pt-grey8: #b3bac5; //Placeholder
+$pt-grey9: #e0e6ec; //
+$pt-grey10: #f4f5f7;
+$pt-grey11: #dfe1e6;
+$pt-grey12: #abadba;
+$pt-grey13: #ebecf0;
+$pt-grey14: rgba(223, 231, 245, 0.4); //pt-grey6的40%透明度，用于dropdown hover的背景色
+$pt-grey15: rgba(93, 105, 119, 0.2);
+$pt-grey16: #cdd9e7;
+$pt-grey17: #fafbfc;
+$pt-grey18: #ebfff0;
+
+$pt-green: #13cb6e; //success
+$pt-green1: #76ca20;
+$pt-green2: #90ca03;
+$pt-green3: #249d60;
+$pt-green4: #00bc90;
+$pt-green5: #00bc6e;
+$pt-green6: #00ad85;
+$pt-green120: rgba(118, 202, 32, 0.2);
+
+$pt-orange1: #ff6f00; //warning
+$pt-orange2: #fa6100; //按钮hover样式
+$pt-orange3: #ffc579; //disabled
+$pt-orange4: #f0c800;
+
+$pt-red1: #ef5350; //error
+$pt-red2: #f54336; //error按钮hover样式
+$pt-red3: #f9a9a7;
+
+$pt-wrap: rgba(9, 30, 66, 0.6); //遮罩的颜色，grey1的60%透明度
+
+// Name: 4.0 版本色阶  Date: 2021-11-10
+$PT-G90: #006700;
+$PT-G80: #008613;
+$PT-G70: #009721;
+$PT-G60: #00a92e;
+
+// 全站配色方案
+// 与【@config/color.config.ts】文件中保持一致
+$pt-green-5: #e6f7e7;
+$pt-green-10: #c3eac4;
+$pt-green-20: #9cdc9f;
+$pt-green-30: #70cf77;
+$pt-green-40: #4ac458;
+$pt-green-50: #16b836;
+$pt-green-60: #00a92e; // Main
+$pt-green-70: #009721; // Main hover
+$pt-green-80: #008613;
+$pt-green-90: #006700;
+$pt-green-100: #001d6c;
+$pt-green-200: #001141;
+$pt-green-300: #001e00;
+
+$pt-black-10: #fafbfc;
+$pt-black-20: #f4f5f7; // Background
+$pt-black-21: #f6f6f6; // Hover Background
+$pt-black-30: #ebecf0; // Line
+$pt-black-40: #dfe1e6;
+$pt-black-50: #c1c7d0; // Outline
+$pt-black-60: #b3bac5; // Icon / Main valid
+$pt-black-70: #a5adba; // Desabled
+$pt-black-80: #97a0af;
+$pt-black-90: #8993a4; // Outline hover / Main icon
+$pt-black-100: #7a869a;
+$pt-black-200: #6b778c;
+$pt-black-300: #5e6c84; // icon
+$pt-black-400: #505f79;
+$pt-black-500: #42526e; // default
+$pt-black-600: #344563; // Text
+$pt-black-700: #253858;
+$pt-black-800: #172b4d;
+$pt-black-900: #091e42; // Title
+
+$pt-white: #fff;
+$pt-white1: #fafbfd;
+
+$pt-white-a-4: rgba(255, 255, 255, 0.04);
+$pt-white-a-8: rgba(255, 255, 255, 0.08);
+$pt-white-a-16: rgba(255, 255, 255, 0.16);
+$pt-white-a-24: rgba(255, 255, 255, 0.24);
+$pt-white-a-32: rgba(255, 255, 255, 0.32);
+$pt-white-a-40: rgba(255, 255, 255, 0.4);
+$pt-white-a-48: rgba(255, 255, 255, 0.48);
+$pt-white-a-56: rgba(255, 255, 255, 0.56);
+$pt-white-a-64: rgba(255, 255, 255, 0.64);
+$pt-white-a-72: rgba(255, 255, 255, 0.72);
+$pt-white-a-80: rgba(255, 255, 255, 0.8);
+$pt-white-a-88: rgba(255, 255, 255, 0.88);
+$pt-white-a-96: rgba(255, 255, 255, 0.96);
+
+// Theme color default definitions
+$pt-info: #29b6f6;
+$pt-info-hover: #e9f7fe;
+$pt-success: #14a800;
+$pt-success-hover: #e7f6e5;
+$pt-alert: #ffc82c;
+$pt-alert-hover: #fff7e1;
+$pt-warning: #ff6f00;
+$pt-warning-hover: #fff4ea;
+$pt-danger: #e53935;
+$pt-danger-hover: #ffebee;

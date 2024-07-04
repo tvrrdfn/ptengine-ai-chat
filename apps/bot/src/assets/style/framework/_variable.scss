@@ -1,0 +1,24 @@
+/****************************** 页面及组件尺寸 ************************/
+$heatmap-topbar-height: 56px;
+$heatmap-toolbar-height: 52px;
+
+$heamap-topbar-media-sm-height: 157px;
+$heatmap-toolbar-media-sm-height: 48px;
+
+$heatmap-smart-report-width: 420px;
+
+/****************************** 页面及组件z-index ************************/
+$heatmap-under-header-index: 999;
+$heatmap-header-index: 1000;
+$heatmap-interactiveModeBar-index: 1100;
+$heatmap-filter-index: 2000;
+$heatmap-report-index: 1999;
+$heatmap-readline-index: 700;
+$heatmap-canvas-index: 100;
+$heatmap-click-mask-index: 200;
+$heatmap-editor-index: 2000;
+$heatmap-click-mask-modal-index: 2000;
+$heatmap-onbo-index: 2001;
+$heatmap-line-tip-dialog-index: 1500;
+$heatmap-smart-report-search-loading: 2147483647;
+

@@ -23,6 +23,9 @@ import type { Sandbox, SDKArea } from '@/bot.types';
     </html>`;
 
     // 隔离 JS 的 HTML 模板
+    const js = import.meta.env.VITE_LOCAL_MODEL === 'local' ?
+        '<script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script>' :
+        `<script type="module" src="${host}ai/chat.js"></script>`;
     const JSIFrameTemplate = `<!DOCTYPE html>
     <html data-pt-chat>
       <head>
@@ -37,8 +40,7 @@ import type { Sandbox, SDKArea } from '@/bot.types';
       <body>
           <script>window.require = () => {}</script>
           <script type="module" src="https://pti.ptengine.com/ui/ptui.js"></script>
-
-          ${import.meta.env.VITE_LOCAL_MODEL === 'local' ? '<script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script>' : '<script type="module" src="${host}ai/chat.js"></script>'}
+          ${js}
       </body>
   </html>`;
 
@@ -250,14 +252,14 @@ import type { Sandbox, SDKArea } from '@/bot.types';
                         set:
                             descriptor.writable || descriptor.set
                                 ? (handler) => {
-                                      const val =
-                                          typeof handler === 'function'
-                                              ? handler.bind(iframeWindow.document)
-                                              : handler;
-                                      sandbox.degrade
-                                          ? (sandbox.document[e] = val)
-                                          : (sandbox.shadowRoot.firstElementChild[e] = val);
-                                  }
+                                    const val =
+                                        typeof handler === 'function'
+                                            ? handler.bind(iframeWindow.document)
+                                            : handler;
+                                    sandbox.degrade
+                                        ? (sandbox.document[e] = val)
+                                        : (sandbox.shadowRoot.firstElementChild[e] = val);
+                                }
                                 : undefined
                     });
                 } catch (e) {
@@ -314,11 +316,11 @@ import type { Sandbox, SDKArea } from '@/bot.types';
                     set:
                         descriptor.writable || descriptor.set
                             ? (handler) => {
-                                  (sandbox.degrade ? sandbox : window).document[propKey] =
-                                      typeof handler === 'function'
-                                          ? handler.bind(iframeWindow.document)
-                                          : handler;
-                              }
+                                (sandbox.degrade ? sandbox : window).document[propKey] =
+                                    typeof handler === 'function'
+                                        ? handler.bind(iframeWindow.document)
+                                        : handler;
+                            }
                             : undefined
                 });
             } catch (e) {

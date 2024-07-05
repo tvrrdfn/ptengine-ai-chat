@@ -3,8 +3,7 @@
     <ChatBubble
         :opened="opened"
         v-if="visibleBubble"
-        @open-chat="openChat"
-        @close-chat="closeChat"
+        @toggle="toggleChat"
     ></ChatBubble>
 
     <!--对话框-->
@@ -47,12 +46,8 @@ onMounted(() => {
 
 onUnmounted(() => {});
 
-function openChat() {
-    opened.value = true;
-}
-
-function closeChat() {
-    opened.value = false;
+function toggleChat() {
+    opened.value = !opened.value;
 }
 
 function createProxyHandler(preUrl: string, callback: (newUrl: string, preUrl: string) => void) {
@@ -102,13 +97,16 @@ html {
 body {
     --body-zindex: 2147483647; //需大于弹出热图
     --bubble-zindex: 2147483647;
-    --bubble-size: 36px;
+    --bubble-size-width: 66px;
+    --bubble-size-height: 40px;
     --bubble-size-x: 44px;
     --bubble-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.16);
     --bubble-bg: rgba(22, 184, 54, 0.8);
     --bubble-bg-blur: 8px;
     --bubble-hover-bg: #{$pt-green-70};
     --chat-bot-width: 430px;
+    --chat-animation-duration: 0.3s;
+    --chat-animation-type: ease-in-out;
 
     width: 0;
     height: 0;

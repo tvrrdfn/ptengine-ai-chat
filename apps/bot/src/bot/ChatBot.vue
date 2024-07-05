@@ -64,12 +64,12 @@ function handleRouterChange() {
     right: calc(var(--chat-bot-width) * -1);
     top: 0;
     bottom: 0;
-    z-index: 1;
+    z-index: var(--bubble-zindex);
     width: var(--chat-bot-width);
     height: 100%;
     background-color: #fff;
     box-shadow: -1px 0 1px #919eab3d;
-    transition: transform 0.3s ease-in-out;
+    transition: transform var(--chat-animation-duration) var(--chat-animation-type);
 
     &.open {
         transform: translateX(calc(var(--chat-bot-width) * -1));

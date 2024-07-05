@@ -14,7 +14,7 @@ import type { Sandbox, SDKArea } from '@/bot.types';
     const uiIFrameTemplate = `<html>
       <head>
         <title>Ptengine Widget</title>
-        <link rel="stylesheet" type="text/css" href="${host}ui/ptui.css">
+        <link rel="stylesheet" type="text/css" href="https://pti.ptengine.com/ui/ptui.css">
         <link rel="stylesheet" type="text/css" href="${host}ai/chat.css">
       </head>
       <body>
@@ -36,9 +36,9 @@ import type { Sandbox, SDKArea } from '@/bot.types';
       </head>
       <body>
           <script>window.require = () => {}</script>
-          <script type="module" src="${host}ui/ptui.js"></script>
-          <script type="module" src="${host}ai/chat.js"></script>
-          <!-- <script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script> -->
+          <script type="module" src="https://pti.ptengine.com/ui/ptui.js"></script>
+
+          ${import.meta.env.VITE_LOCAL_MODEL === 'local' ? '<script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script>' : '<script type="module" src="${host}ai/chat.js"></script>'}
       </body>
   </html>`;
 

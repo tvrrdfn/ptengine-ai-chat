@@ -5,7 +5,7 @@
   "scripts": {
     "dev:all": "pnpm run --parallel --no-stream -r dev",
     "dev:chat": "pnpm --filter @ptengine/chat dev",
-    "dev:bot": "pnpm --filter @ptengine/bot dev",
+    "dev:bot": "pnpm --filter @ptengine/chat-bot dev",
     "build": "next build",
     "start": "next start"
   }

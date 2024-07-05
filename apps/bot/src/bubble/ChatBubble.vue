@@ -7,7 +7,7 @@
         ref="draggableRef"
     >
         <!-- 拖拽 -->
-        <div :class="$style.handle" ref="draggableHandleRef">
+        <!-- <div :class="$style.handle" ref="draggableHandleRef">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="10"
@@ -63,19 +63,11 @@
                     </filter>
                 </defs>
             </svg>
-        </div>
-
-        <!-- 退出Chat -->
-        <div :class="$style.exit" v-if="props.opened" @click="emit('closeChat')">
-            <div :class="$style.icon">
-                <pt-icon icon="pt-icon-exit"></pt-icon>
-            </div>
-            <span>{{ $t('chat.bubble_exit_chat') }}</span>
-        </div>
+        </div> -->
 
         <!-- Chat Logo -->
-        <div :class="$style.logo" v-else @click="emit('openChat')">
-            <pt-icon icon="pt-icon--pt"></pt-icon>
+        <div :class="$style.logo" @click="handleLogoClick">
+             <svg t="1720144959146" class="icon" viewBox="0 0 1264 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="51480" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M391.529412 0C289.129412 0 192.752941 36.141176 120.470588 108.423529 54.211765 180.705882 6.023529 265.035294 6.023529 367.435294v578.258824c0 42.164706 18.070588 78.305882 60.235295 78.305882s66.258824-36.141176 66.258823-78.305882v-289.129412c96.376471 48.188235 150.588235 72.282353 234.917647 72.282353 102.4 0 192.752941-36.141176 265.035294-108.42353 72.282353-72.282353 108.423529-156.611765 108.42353-259.011764 0-102.4-36.141176-186.729412-102.4-259.011765C572.235294 36.141176 487.905882 0 391.529412 0zM542.117647 518.023529c-42.164706 42.164706-90.352941 66.258824-150.588235 66.258824s-114.447059-24.094118-156.611765-66.258824c-42.164706-42.164706-66.258824-90.352941-66.258823-150.588235s24.094118-114.447059 66.258823-156.611765c42.164706-42.164706 96.376471-66.258824 156.611765-66.258823s114.447059 24.094118 156.611764 66.258823c42.164706 42.164706 66.258824 96.376471 66.258824 156.611765-6.023529 60.235294-30.117647 108.423529-72.282353 150.588235zM1186.635294 873.411765c-54.211765 0-114.447059-24.094118-156.611765-66.258824-42.164706-42.164706-72.282353-96.376471-72.282353-156.611765V433.694118h156.611765c36.141176 0 72.282353-42.164706 72.282353-78.305883 0-42.164706-30.117647-78.305882-72.282353-78.305882h-156.611765V114.447059c0-6.023529 0-78.305882-78.305882-84.329412-42.164706 0-84.329412 30.117647-84.329412 72.282353V662.588235c0 102.4 48.188235 186.729412 120.470589 259.011765 60.235294 60.235294 138.541176 96.376471 222.870588 102.4h42.164706c42.164706 0 72.282353-30.117647 72.282353-72.282353 6.023529-42.164706-30.117647-78.305882-66.258824-78.305882z" p-id="51481"></path></svg>
             <span>{{ $t('chat.open_chat') }}</span>
         </div>
     </div>
@@ -88,13 +80,14 @@ import i18n from '@/i18n/i18n';
 import { useDraggable } from '@/hooks/useDraggable';
 import { getViewSize } from '@/utils/dom.util';
 import { createObserver } from '@/utils/browser.util';
+import ptLogoSvg from '@/assets/images/pt-logo.svg';
 
 const props = defineProps<{
     opened: boolean;
 }>();
 
 const topWindow = inject('topWindow') as Window;
-const emit = defineEmits(['openChat', 'closeChat']);
+const emit = defineEmits(['toggle']);
 
 // state
 const draggableRef = ref();
@@ -102,6 +95,7 @@ const draggableHandleRef = ref();
 const bubbleObserver = ref();
 
 onMounted(() => {
+    console.log('ptLogoSvg ', ptLogoSvg)
     if (draggableRef.value) {
         activeDraggable(draggableRef.value, draggableHandleRef.value);
 
@@ -151,6 +145,10 @@ function updatePosition() {
 
     draggableRef.value.setAttribute('data-position-x', x);
     draggableRef.value.setAttribute('data-position-y', y);
+}
+
+function handleLogoClick(){
+    emit('toggle')
 }
 </script>
 
@@ -303,19 +301,16 @@ function updatePosition() {
             visibility: visible;
         }
     }
-
     &[data-locale='EN'] {
         .widget:hover .main {
             width: 220px !important;
         }
     }
-
     &[data-locale='ZH'] {
         .widget:hover .main {
             width: 192px !important;
         }
     }
-
     &[data-locale='JP'] {
         .widget:hover .main {
             width: 190px !important;
@@ -323,6 +318,7 @@ function updatePosition() {
     }
 
     &.opened {
+        transition: right var(--chat-animation-duration) var(--chat-animation-type);
         right: var(--chat-bot-width);
     }
 
@@ -588,40 +584,26 @@ function updatePosition() {
     }
 
     .logo {
-        width: var(--bubble-size);
-        height: var(--bubble-size);
-        border-radius: calc(var(--bubble-size) / 2);
+        width: var(--bubble-size-width);
+        height: var(--bubble-size-height);
+        border-radius: calc(var(--bubble-size-height) / 2) 0 0 calc(var(--bubble-size-height) / 2);
         background: $pt-white;
         box-shadow: var(--bubble-shadow);
         cursor: pointer;
         display: flex;
         align-items: center;
-        justify-content: center;
         position: relative;
-        text-align: center;
         overflow: hidden;
+        margin-right: -22px;
+        padding: 0 12px;
         @include bubbleTransition();
 
-        &::before {
-            content: '';
-            width: calc(var(--bubble-size) - 10px);
-            height: calc(var(--bubble-size) - 10px);
-            border-radius: 50%;
-            background-color: $pt-green-60;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
         &:hover {
-            width: auto;
-            width: 150px;
+            width: 104px;
             background: $pt-green-60;
 
-            &::before,
             svg {
-                display: none;
+                fill: $pt-white;
             }
 
             span {
@@ -630,9 +612,9 @@ function updatePosition() {
         }
 
         svg {
-            fill: $pt-white;
-            width: 14px !important;
-            height: 14px !important;
+            fill: $pt-green-60;
+            flex: 0 0 calc(var(--bubble-size-height) - 16px);
+            height: calc(var(--bubble-size-height) - 16px);
             position: relative;
             z-index: 10;
         }
@@ -641,7 +623,7 @@ function updatePosition() {
             color: $pt-white;
             font-size: 13px;
             font-style: normal;
-            font-weight: 500;
+            font-weight: bold;
             padding: 0 12px;
             white-space: nowrap;
             display: none;

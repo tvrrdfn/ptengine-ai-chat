@@ -24,7 +24,7 @@ import type { Sandbox, SDKArea } from '@/bot.types';
 
     // 隔离 JS 的 HTML 模板
     const js = import.meta.env.VITE_LOCAL_MODEL === 'local' ?
-        '<script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script>' :
+        '<script type="module" src="/src/chat.ts?area=jp&sid=37f93we"></script>' : //本地开发环境
         `<script type="module" src="${host}ai/chat.js"></script>`;
     const JSIFrameTemplate = `<!DOCTYPE html>
     <html data-pt-chat>

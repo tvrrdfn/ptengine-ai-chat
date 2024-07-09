@@ -649,14 +649,14 @@ const Main: FC = () => {
         return <Loading type='app' />
 
     return (
-        <div className='bg-gray-100'>
-            <Header
+        <div className='bg-gray-100 h-full'>
+            {/* <Header
                 title={APP_INFO.title}
                 isMobile={isMobile}
                 onShowSideBar={showSidebar}
                 onCreateNewChat={() => handleConversationIdChange('-1')}
-            />
-            <div className="flex rounded-t-2xl bg-white overflow-hidden">
+            /> */}
+            <div className="flex bg-white overflow-hidden h-full">
                 {/* sidebar */}
                 {!isMobile && renderSidebar()}
                 {isMobile && isShowSidebar && (
@@ -670,7 +670,7 @@ const Main: FC = () => {
                     </div>
                 )}
                 {/* main */}
-                <div className='flex-grow flex flex-col h-[calc(100vh_-_3rem)]'>
+                <div className='flex-grow flex flex-col'>
                     {
                         hasSetInputs ? (
                             <>

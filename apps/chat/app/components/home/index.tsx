@@ -26,7 +26,7 @@ const Home: FC<HomeProps> = ({
             },
             {
                 icon: '<svg width="20" height="20" viewBox="0 0 20 18"><g><path fill="var(--theme-icon-primary)" d="M2.677 16.468c-.402.402-1.105 1.105-.804-.603C2.576 12.953 6.079 2.597 15.834.9c1.707 0-3.114 4.118-3.114 4.118s1.708.2 2.813-.904c-.703 3.415-3.817 3.415-4.62 3.716.903.1 1.607.603 3.113.1-.402 1.005-1.707 2.21-6.83 3.315-2.21.804-4.118 4.821-4.52 5.223Z" data-follow-fill="#20262E"></path><path stroke-linecap="round" stroke-width="1.35" stroke="url(#chatHomeWritinga:rk:)" d="M2.303 16.418c.852-.936 4.064-2.269 8.554-.576s7.094.591 7.834-.17"></path><defs><linearGradient gradientUnits="userSpaceOnUse" y2="16" x2="19.174" y1="16" x1="3.174" id="chatHomeWritinga:rk:"><stop stop-color="#20262E"></stop><stop stop-opacity="0" stop-color="#20262E" offset="1"></stop></linearGradient></defs></g></svg>',
-                content: '与昨天相比，转化对比'
+                content: '与昨天相比'
             },
             {
                 icon: '<svg width="16" height="16" viewBox="0 0 16 16" ><g><path fill="var(--theme-icon-primary)" d="M14.436 0a1.6 1.6 0 0 1 1.095.415c.313.277.469.624.469 1.04 0 .375-.134.825-.402 1.349-1.979 3.744-3.364 5.982-4.157 6.714-.578.541-1.227.812-1.948.812-.751 0-1.396-.275-1.935-.826-.54-.55-.81-1.203-.81-1.96 0-.761.275-1.392.823-1.892l5.703-5.17C13.625.161 14.013 0 14.436 0ZM6.31 9.232c.232.453.55.84.952 1.16.402.322.85.549 1.345.68l.009.633c.024 1.268-.362 2.301-1.158 3.099C6.664 15.6 5.625 16 4.344 16c-.733 0-1.382-.138-1.948-.415a3.55 3.55 0 0 1-1.364-1.139 5.3 5.3 0 0 1-.773-1.633A7.149 7.149 0 0 1 0 10.848l.366.268c.203.149.388.281.555.397.167.117.342.225.527.326s.322.152.411.152c.245 0 .408-.11.492-.33.149-.393.32-.728.514-1.005.193-.277.4-.503.621-.678.22-.176.483-.317.787-.424a4.84 4.84 0 0 1 .92-.228c.31-.045.683-.076 1.118-.094Z" data-follow-fill="#20262E"></path></g></svg>',
@@ -39,7 +39,7 @@ const Home: FC<HomeProps> = ({
             '生成一张活动图片'
         ]
         return (
-            <div className='grid gap-4'>
+            <div className='flex flex-col justify-center gap-4 flex-auto px-3 pt-5 pb-16'>
                 <div className='font-semibold text-2xl text-center leading-[32px] mb-[8px]'>今天想问点什么？</div>
                 <ul className='grid gap-4 grid-cols-2'>
                     {tabItems.map((item, index) => (
@@ -49,7 +49,7 @@ const Home: FC<HomeProps> = ({
                             onClick={() => handleTabClick(item.content)}
                         >
                             <div className="w-8 h-8 bg-white rounded-[8px] mr-[10px] flex items-center justify-center" dangerouslySetInnerHTML={{ __html: item.icon }}></div>
-                            <div className="ml-[10px]">{item.content}</div>
+                            <div className="ml-[10px] whitespace-nowrap">{item.content}</div>
                         </li>
                     ))}
                 </ul>

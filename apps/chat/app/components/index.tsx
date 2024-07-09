@@ -682,21 +682,20 @@ const Main: FC = () => {
                                     checkCanSend={checkCanSend}
                                     visionConfig={visionConfig}
                                 />
-
-                                <div className='pt-1.5 px-3 relative'>
-                                    <ActionsToolbarComponent />
-                                    <SkillToolbarComponent />
-                                    <ChatToolbarComponent onCurrentIdChange={handleConversationIdChange} />
-                                    <ChatInputBox
-                                        onSend={handleSend}
-                                        checkCanSend={checkCanSend}
-                                        isResponsing={isResponsing}
-                                        visionConfig={visionConfig}
-                                    />
-                                </div>
                             </>
                         ) : <Home onStartChatForTab={handleStartChatForTab} />
                     }
+                    <div className='pt-1.5 px-3 relative'>
+                        <ActionsToolbarComponent />
+                        <SkillToolbarComponent />
+                        <ChatToolbarComponent onCurrentIdChange={handleConversationIdChange} />
+                        <ChatInputBox
+                            onSend={handleSend}
+                            checkCanSend={checkCanSend}
+                            isResponsing={isResponsing}
+                            visionConfig={visionConfig}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

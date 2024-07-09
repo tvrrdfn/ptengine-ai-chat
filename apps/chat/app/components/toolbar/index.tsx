@@ -19,6 +19,7 @@ export type ChatInputProps = {
 }
 
 export type IChatToolbarProps = {
+    onShowConversatioonList: () => void
     onCurrentIdChange: (id: string) => void
 }
 
@@ -88,6 +89,7 @@ const ActionsToolbar: FC<ChatInputProps> = ({
 }
 
 const ChatToolbar: FC<IChatToolbarProps> = ({
+    onShowConversatioonList,
     onCurrentIdChange
 }) => {
 
@@ -95,12 +97,18 @@ const ChatToolbar: FC<IChatToolbarProps> = ({
         return (
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                    <span className="h-[32px] flex items-center text-sm text-neutral-800 font-medium cursor-pointer rounded-[12px] hover:bg-slate-600/[0.08] p-[6px]">
+                    <span
+                        className="h-[32px] flex items-center text-sm text-neutral-800 font-medium cursor-pointer rounded-[12px] hover:bg-slate-600/[0.08] p-[6px]"
+                        onClick={onShowConversatioonList}
+                    >
                         <AdjustmentsHorizontalIcon className="mr-2 h-4 w-4 " /> 历史会话
                     </span>
                 </div>
                 <div className="flex items-center">
-                    <span className="h-[32px] flex items-center text-sm text-neutral-800 font-medium cursor-pointer rounded-[12px] hover:bg-slate-600/[0.08] p-[6px]" onClick={() => { onCurrentIdChange('-1') }}>
+                    <span
+                        className="h-[32px] flex items-center text-sm text-neutral-800 font-medium cursor-pointer rounded-[12px] hover:bg-slate-600/[0.08] p-[6px]"
+                        onClick={() => { onCurrentIdChange('-1') }}
+                    >
                         <PencilSquareIcon className="mr-2 h-4 w-4 " /> 新对话
                     </span>
                 </div>

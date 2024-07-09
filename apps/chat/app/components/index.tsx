@@ -27,7 +27,7 @@ import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 import Home from '@/app/components/home'
 import ChatList from '@/app/components/chat-input/chat-list';
 import ChatInputBox from '@/app/components/chat-input/chat-input-box';
-
+import ConversationList from '@/app/components/conversation/conversation-list';
 import {
     ChatToolbarComponent,
     SkillToolbarComponent,
@@ -68,6 +68,7 @@ const Main: FC = () => {
         detail: Resolution.low,
         transfer_methods: [TransferMethod.local_file],
     })
+    const [isShowConversatioonList, { setTrue: showConversatioonList, setFalse: hideConversatioonList }] = useBoolean(false)
 
     useEffect(() => {
         if (APP_INFO?.title)
@@ -199,6 +200,7 @@ const Main: FC = () => {
         // trigger handleConversationSwitch
         setCurrConversationId(id, APP_ID)
         hideSidebar()
+        hideConversatioonList()
     }
 
     /*
@@ -658,7 +660,7 @@ const Main: FC = () => {
             /> */}
             <div className="flex bg-white overflow-hidden h-full">
                 {/* sidebar */}
-                {!isMobile && renderSidebar()}
+                {/* {!isMobile && renderSidebar()}
                 {isMobile && isShowSidebar && (
                     <div className='fixed inset-0 z-50'
                         style={{ backgroundColor: 'rgba(35, 56, 118, 0.2)' }}
@@ -668,27 +670,28 @@ const Main: FC = () => {
                             {renderSidebar()}
                         </div>
                     </div>
-                )}
+                )} */}
                 {/* main */}
                 <div className='flex-grow flex flex-col'>
                     {
-                        hasSetInputs ? (
-                            <>
-                                <ChatList
-                                    chatList={chatList}
-                                    onSend={handleSend}
-                                    onFeedback={handleFeedback}
-                                    isResponsing={isResponsing}
-                                    checkCanSend={checkCanSend}
-                                    visionConfig={visionConfig}
-                                />
-                            </>
-                        ) : <Home onStartChatForTab={handleStartChatForTab} />
+                        hasSetInputs ?
+                            <ChatList
+                                chatList={chatList}
+                                onSend={handleSend}
+                                onFeedback={handleFeedback}
+                                isResponsing={isResponsing}
+                                checkCanSend={checkCanSend}
+                                visionConfig={visionConfig}
+                            />
+                            : <Home onStartChatForTab={handleStartChatForTab} />
                     }
                     <div className='pt-1.5 px-3 relative'>
                         <ActionsToolbarComponent />
                         <SkillToolbarComponent />
-                        <ChatToolbarComponent onCurrentIdChange={handleConversationIdChange} />
+                        <ChatToolbarComponent
+                            onShowConversatioonList={showConversatioonList}
+                            onCurrentIdChange={handleConversationIdChange}
+                        />
                         <ChatInputBox
                             onSend={handleSend}
                             checkCanSend={checkCanSend}
@@ -696,6 +699,15 @@ const Main: FC = () => {
                             visionConfig={visionConfig}
                         />
                     </div>
+
+                    {isShowConversatioonList &&
+                        <ConversationList
+                            list={conversationList}
+                            onHideConversatioonList={hideConversatioonList}
+                            onCurrentIdChange={handleConversationIdChange}
+                            currentId={currConversationId}
+                        />
+                    }
                 </div>
             </div>
         </div>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ptengine Chat</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+    <meta name="google" content="notranslate" />
+    <meta name="version" content="202406170000" />
+    <meta name="data-version" content="20240607001" />
+    <!-- ptengine-icons -->
+    <script src="//at.alicdn.com/t/c/font_2680239_q59sfmjze7.js"></script>
+    <style>
+        .page-loading {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 50%;
+            margin-top: -21px;
+            text-align: center;
+            overflow: hidden;
+            z-index: 111;
+        }
+
+        .page-loading .circular {
+            width: 42px;
+            height: 42px;
+            overflow: hidden;
+            -webkit-animation: loading-rotate 2s linear infinite;
+            animation: loading-rotate 2s linear infinite;
+        }
+
+        .page-loading .path {
+            -webkit-animation: loading-dash 1.5s ease-in-out infinite;
+            animation: loading-dash 1.5s ease-in-out infinite;
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: 0;
+            stroke-width: 2;
+            stroke: #cec7d0;
+            stroke-linecap: round;
+        }
+
+        .page-loading i {
+            color: #cec7d0;
+        }
+
+        @-webkit-keyframes loading-rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes loading-rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes loading-dash {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -40px;
+            }
+
+            100% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -120px;
+            }
+        }
+
+        @keyframes loading-dash {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -40px;
+            }
+
+            100% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="page-loading">
+            <svg viewbox="25 25 50 50" class="circular">
+                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+            </svg>
+        </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
